@@ -10,10 +10,10 @@ def check_status() -> bool:
     """
 
     try:
-        status = subprocess.check_output(["upower", "-i", "/org/freedesktop/Upower/devices/battery_BAT0"],
+        battery_status = subprocess.check_output(["upower", "-i", "/org/freedesktop/Upower/devices/battery_BAT0"],
         universal_newlines=True,
         )
-        return "state: discharging" in status.lower()
+        return "state: discharging" in battery_status.lower()
     except subprocess.CalledProcessError as e:
         print(f"Error checking power status: {e}")
         return False
